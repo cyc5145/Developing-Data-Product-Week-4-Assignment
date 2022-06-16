@@ -1,0 +1,66 @@
+---
+title: "Reproducible Pitch Presentation"
+author: "John Chen"
+date: '2022-06-16'
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Peer Graded Assignment Reproducible Pitch
+
+In this assignment, I have created a shiny application, where you can predict the distance (ft) for a car to stop based on its speed (miles). The link to the application is:
+
+**https://cyc5145.shinyapps.io/MyShiny/**
+
+The codes of server.R and ui.R can also be found in the link below:
+
+**https://github.com/cyc5145/Developing-Data-Product-Week-4-Assignment**
+
+
+## Data Used for the Shiny Application
+
+The data used for the Shiny Application is *cars* from Rstudio, which contain two column of data, dist (distance in ft) and speed (speed of the car). The data give the speed of cars and the distances taken to stop. Note that the data were recorded in the 1920s.
+
+```{r}
+head(cars)
+```
+
+
+## Glimps of the UI codes
+
+```{r, eval = FALSE, echo = TRUE}
+shinyUI(fluidPage(
+
+    # Application title
+    titlePanel("Predict Stopping Distances from Car Speed"),
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("sliderSpeed", "What is the speed of the car (mph)?", 4, 40, value = 10),
+            checkboxInput("showModel1", "Show/Hide Model1", value = TRUE),
+            checkboxInput("showModel2", "Show/Hide Model2", value = TRUE)
+        ),
+        mainPanel(
+            plotOutput("plot1"),
+            h3("Predict Stopping Distance from Model 1:"),
+            textOutput("pred1"),
+            h3("Predict Stopping Distance from Model 2:"),
+            textOutput("pred2")
+        )
+    )
+))
+
+
+```
+
+## How it works?
+
+By sliding the slider, user can predict the stop distance for up to 40 miles.
+
+They can also tick the model to view the model that they are interested in. 
+
+Thank You. 
